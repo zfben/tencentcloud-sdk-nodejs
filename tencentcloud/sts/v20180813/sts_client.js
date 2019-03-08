@@ -41,7 +41,7 @@ class StsClient extends AbstractClient {
      */
     GetFederationToken(req, cb) {
         let resp = new GetFederationTokenResponse();
-        this.request("GetFederationToken", req, resp, cb);
+        return this.request("GetFederationToken", req, resp, cb);
     }
 
     /**
