@@ -82,16 +82,6 @@ function request(opts = {}) {
       response.body = data;
 
       try {
-        if (response.headers['content-type'] && data && data.length) {
-          if (response.headers['content-type'].indexOf('application/json') === 0) {
-            response.body = JSON.parse(response.body);
-          }
-
-          if (response.headers['content-type'].indexOf('text/xml') === 0) {
-            response.body = await xml2json(response.body);
-          }
-        }
-
         if (response.statusCode === 200 || response.statusCode === 201) {
           deferred.resolve(response);
         } else {

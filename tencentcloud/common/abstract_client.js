@@ -72,7 +72,10 @@ class AbstractClient {
         if(cb){
             this.doRequest(action, req).then(data => this.succRequest(resp, cb, data), error => this.failRequest(error, cb));
         }else{
-            return this.doRequest(action, req).then(resp.deserialize);
+            return this.doRequest(action, req).then(data => {
+                resp.deserialize(data);
+                return resp;
+            });;
         }
     }
 

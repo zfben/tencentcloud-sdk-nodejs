@@ -16,7 +16,7 @@ class HttpConnection {
             req.form = data;
         }
         Object.assign(req, opt);
-        request(req, function (error, response, body) {
+        request(req).then(function (res) {
             /**
             * `.request` 的请求回调
             * @callback requestCallback
@@ -25,8 +25,8 @@ class HttpConnection {
             * @param {String} body API 请求结果
             */
 
-            callback(error, response, body);
-        })
+            callback(null, res, res.body);
+        }).catch(res => callback(res))
     }
 }
 module.exports = HttpConnection;
